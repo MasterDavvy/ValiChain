@@ -209,7 +209,7 @@
                         <i class="fas fa-play mr-2"></i>
                         View Demo
                     </button>
-                    <button class="glass-effect px-8 py-4 rounded-full text-lg font-semibold text-white hover:bg-white hover:bg-opacity-10 transition-all">
+                    <button class="glass-effect px-8 py-4 rounded-full text-lg font-semibold text-white hover:bg-white hover:bg-opacity-10 transition-all" onclick="downloadWhitepaper()">
                         <i class="fas fa-download mr-2"></i>
                         Download Whitepaper
                     </button>
@@ -968,6 +968,18 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+function downloadWhitepaper() {
+    // Replace with the actual PDF file path in your project or hosted URL
+    const fileUrl = 'brown-elisabetta-98.tiiny.site'; 
+
+    // Create an invisible link and click it
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'VALiChain_Whitepaper.pdf'; // Force download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
     </script>
 </body>
 </html>
