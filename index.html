@@ -6,32 +6,110 @@
     <title>VALiChain - Verified Ownership on the Blockchain</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-bg: #0a0e13;
+            --secondary-bg: #0f1419;
+            --card-bg: #162025;
+            --accent: #d4af37;
+            --accent-light: #ffd87a;
+            --text-primary: #ffffff;
+            --text-secondary: #a6b0be;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            min-height: 100vh;
+            background-color: var(--primary-bg) !important;
+            background: var(--primary-bg) !important;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--primary-bg) !important;
+            background: linear-gradient(135deg, #0a0e13 0%, #0f1419 25%, #162025 50%, #0f1419 75%, #0a0e13 100%) !important;
+            background-attachment: fixed !important;
+            line-height: 1.6;
         }
-        .playfair {
-            font-family: 'Playfair Display', serif;
+
+        .bg-primary {
+            background-color: var(--primary-bg) !important;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+
+        .bg-secondary {
+            background-color: var(--secondary-bg) !important;
         }
-        .gold-gradient {
-            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+
+        .bg-card {
+            background-color: var(--card-bg) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .card-hover {
+
+        .text-accent {
+            color: var(--accent) !important;
+        }
+
+        .text-accent-light {
+            color: var(--accent-light) !important;
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: #000;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
-        .card-hover:hover {
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .card {
+            background-color: var(--card-bg) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .fade-in {
-            animation: fadeInUp 0.8s ease forwards;
+
+        .hero-section {
+            background: radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 216, 122, 0.05) 0%, transparent 50%),
+                        var(--primary-bg);
+            min-height: 100vh;
         }
+
+        .section {
+            background-color: var(--primary-bg) !important;
+            background: var(--primary-bg) !important;
+        }
+
+        .icon-container {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 216, 122, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -42,175 +120,264 @@
                 transform: translateY(0);
             }
         }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .tech-glow {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure backgrounds stay consistent */
+        .min-h-screen {
+            background-color: var(--primary-bg) !important;
+        }
+
+        /* Override any potential white backgrounds */
+        section, div, main, article {
+            background-color: transparent;
+        }
+
+        /* Force dark theme */
+        html[data-theme="dark"], 
+        html[class*="dark"],
+        .dark {
+            background-color: var(--primary-bg) !important;
+            color: var(--text-primary) !important;
         }
     </style>
 </head>
-<body class="bg-slate-900 text-white">
+<body class="bg-primary">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-secondary bg-opacity-95 backdrop-filter backdrop-blur-lg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center">
-                        <i class="fas fa-check text-slate-900 text-lg font-bold"></i>
+                    <div class="w-10 h-10 rounded-lg icon-container flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-accent"></i>
                     </div>
-                    <span class="text-2xl font-bold playfair">VALiChain</span>
+                    <span class="text-2xl font-bold gradient-accent">VALiChain</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#problem" class="hover:text-yellow-400 transition">Problem</a>
-                    <a href="#solution" class="hover:text-yellow-400 transition">Solution</a>
-                    <a href="#features" class="hover:text-yellow-400 transition">Features</a>
-                    <a href="#technology" class="hover:text-yellow-400 transition">Technology</a>
-                    <a href="#contact" class="hover:text-yellow-400 transition">Contact</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#problem" class="text-gray-300 hover:text-accent-light transition-colors">Problem</a>
+                    <a href="#solution" class="text-gray-300 hover:text-accent-light transition-colors">Solution</a>
+                    <a href="#features" class="text-gray-300 hover:text-accent-light transition-colors">Features</a>
+                    <a href="#technology" class="text-gray-300 hover:text-accent-light transition-colors">Technology</a>
+                    <a href="#contact" class="btn-accent px-6 py-2 rounded-full">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-yellow-900/20"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="fade-in">
-                <div class="inline-block px-4 py-2 bg-yellow-400/20 rounded-full text-yellow-400 text-sm font-semibold mb-6">
-                    <i class="fas fa-shield-alt mr-2"></i>
-                    Built on Somnia Blockchain
+    <section class="hero-section flex items-center justify-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center animate-fade-in-up">
+                <div class="mb-6">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full glass-effect mb-6">
+                        <i class="fas fa-rocket text-accent mr-2"></i>
+                        <span class="text-sm font-medium text-gray-300">Built on Somnia Blockchain</span>
+                    </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold playfair mb-6 bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent">
-                    VALiChain
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 section-title">
+                    Verified Ownership<br/>
+                    <span class="gradient-accent">on the Blockchain</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-300 mb-4">
-                    Validated Ownership on the Blockchain
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
+                    KYC-verified digital ownership ledger making physical assets verifiable, transferable, and fraud-proof through chip-linked digital twins and automated authentication.
                 </p>
-                <p class="text-lg md:text-xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    KYC-verified digital ownership ledger that makes physical assets verifiable, transferable, and fraud-proof. From luxury goods to government titles.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <button class="px-8 py-4 gold-gradient text-slate-900 font-bold rounded-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button class="btn-accent px-8 py-4 rounded-full text-lg font-semibold flex items-center">
                         <i class="fas fa-play mr-2"></i>
-                        Get Started
+                        View Demo
                     </button>
-                    <button class="px-8 py-4 border-2 border-slate-600 text-white font-bold rounded-lg hover:bg-slate-800 transition-all duration-300">
-                        <i class="fas fa-book mr-2"></i>
-                        Learn More
+                    <button class="glass-effect px-8 py-4 rounded-full text-lg font-semibold text-white hover:bg-white hover:bg-opacity-10 transition-all">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Whitepaper
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-slate-400 text-xl"></i>
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-accent mb-2">$30B+</div>
+                    <div class="text-gray-400">Lost to counterfeits annually</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-accent mb-2">1M+ TPS</div>
+                    <div class="text-gray-400">Somnia blockchain throughput</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-accent mb-2">Sub-second</div>
+                    <div class="text-gray-400">Transaction finality</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section id="problem" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-6">
+    <section id="problem" class="section py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">The Problem</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Premium goods markets and government registries face critical challenges that cost billions annually
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">The <span class="text-accent">Problem</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Premium goods and regulated asset markets face critical challenges that cost billions annually
                 </p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-red-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-exclamation-triangle text-red-400 text-2xl"></i>
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-exclamation-triangle text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">$30B+ Lost to Counterfeits</h3>
-                    <p class="text-slate-400 leading-relaxed">
-                        Luxury brands lose massive revenue to counterfeit goods. Paper certificates and digital scans are easily forged, making authenticity verification nearly impossible.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Counterfeiting & Fraud</h3>
+                    <p class="text-gray-300">Luxury brands lose $30B+ annually to counterfeit goods. Paper certificates and digital scans are easily forged, making verification unreliable.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-unlink text-orange-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-broken-chain text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Fragmented Records</h3>
-                    <p class="text-slate-400 leading-relaxed">
-                        Ownership data is scattered across receipts, databases, and unverifiable certificates. Government registries are often local, paper-based, and siloed.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Fragmented Records</h3>
+                    <p class="text-gray-300">Ownership data scattered across receipts, databases, and unverifiable certificates. Government registries are often local and paper-based.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-clock text-yellow-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-hourglass text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Slow & Costly Transfers</h3>
-                    <p class="text-slate-400 leading-relaxed">
-                        Asset transfers take weeks, involve multiple parties, and incur high fees. Vehicle transfers require DMV visits with 10-30 day delays.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Slow & Costly Transfers</h3>
+                    <p class="text-gray-300">Vehicle transfers take 10-30 days with DMV visits. Land transfers involve manual surveys and weeks-long processing times.</p>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-user-shield text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Compliance Friction</h3>
+                    <p class="text-gray-300">KYC/AML processes are slow, repetitive, and privacy-invasive. Cross-border transactions face inconsistent legal standards.</p>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Inefficient Authentication</h3>
+                    <p class="text-gray-300">Authenticators lack incentives with manual processes and no automated payment. No unified system for verification requests.</p>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-money-bill-wave text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Lost Revenue</h3>
+                    <p class="text-gray-300">Brands miss royalties on secondary sales. Governments face late or missed collection of taxes and fees from asset transfers.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Solution Section -->
-    <section id="solution" class="py-20 bg-slate-900">
-        <div class="container mx-auto px-6">
+    <section id="solution" class="section py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">The Solution</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    VALiChain creates digital twins for physical assets, enabling instant, verifiable, and compliant ownership transfers
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Our <span class="text-accent">Solution</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    VALiChain creates chip-linked digital twins with KYC-verified ownership and automated authentication marketplace
                 </p>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-microchip text-blue-400"></i>
+                        <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-microchip text-accent"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-2">Hardware-Bound Digital Twins</h3>
-                            <p class="text-slate-400">Each physical asset is paired with an NFT bound to NFC/secure-element chips, creating tamper-proof provenance records.</p>
+                            <h3 class="text-2xl font-bold mb-2 text-white">Hardware-Bound Digital Twins</h3>
+                            <p class="text-gray-300">Each physical asset is paired with an NFT bound to NFC/secure chips, creating immutable proof of authenticity and ownership.</p>
                         </div>
                     </div>
+
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-user-shield text-green-400"></i>
+                        <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-id-card text-accent"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-2">KYC-Verified Transfers</h3>
-                            <p class="text-slate-400">Only verified individuals can hold or transfer ownership, ensuring regulatory compliance and reducing fraud.</p>
+                            <h3 class="text-2xl font-bold mb-2 text-white">KYC-Gated Transfers</h3>
+                            <p class="text-gray-300">Only verified individuals can hold or transfer ownership using Soulbound Tokens, reducing fraud and enabling compliance.</p>
                         </div>
                     </div>
+
                     <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-marketplace text-purple-400"></i>
+                        <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-marketplace text-accent"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-2">Verification Marketplace</h3>
-                            <p class="text-slate-400">Accredited authenticators verify products on-demand and receive automated commission payouts through smart contracts.</p>
+                            <h3 class="text-2xl font-bold mb-2 text-white">Authentication Marketplace</h3>
+                            <p class="text-gray-300">Whitelisted brands, agencies, and authenticators verify products on-demand with automated commission payouts.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-route text-accent"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-white">Automatic Fee Routing</h3>
+                            <p class="text-gray-300">Smart contracts instantly distribute verification fees, brand royalties, and government duties upon approval.</p>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-xl border border-slate-700 tech-glow animate-float">
-                        <div class="text-center mb-6">
-                            <div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-link text-slate-900 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-center text-white">How It Works</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-black font-bold">1</div>
+                            <div>
+                                <div class="font-semibold text-white">Asset Registration</div>
+                                <div class="text-sm text-gray-300">Physical item paired with chip-linked NFT</div>
                             </div>
-                            <h3 class="text-2xl font-bold">Instant Verification</h3>
                         </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
-                                <span>Physical Asset</span>
-                                <i class="fas fa-arrow-right text-yellow-400"></i>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-black font-bold">2</div>
+                            <div>
+                                <div class="font-semibold text-white">KYC Verification</div>
+                                <div class="text-sm text-gray-300">Owner identity verified via Soulbound Token</div>
                             </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
-                                <span>NFC Chip Binding</span>
-                                <i class="fas fa-arrow-right text-yellow-400"></i>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-black font-bold">3</div>
+                            <div>
+                                <div class="font-semibold text-white">Authentication Request</div>
+                                <div class="text-sm text-gray-300">Owner/buyer requests verification via marketplace</div>
                             </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
-                                <span>Blockchain Token</span>
-                                <i class="fas fa-check text-green-400"></i>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-black font-bold">4</div>
+                            <div>
+                                <div class="font-semibold text-white">Instant Transfer</div>
+                                <div class="text-sm text-gray-300">Verified ownership transferred in seconds</div>
                             </div>
                         </div>
                     </div>
@@ -220,173 +387,336 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-6">
+    <section id="features" class="section py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">Key Features</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Advanced blockchain technology meets real-world asset management
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Key <span class="text-accent">Features</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive blockchain-based ownership verification system
                 </p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-fingerprint text-blue-400 text-2xl"></i>
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-fingerprint text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Hardware Proof-of-Possession</h3>
-                    <p class="text-slate-400">NFC/secure-element chip signatures confirm physical product matches on-chain records.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Hardware Proof-of-Possession</h3>
+                    <p class="text-gray-300">NFC/secure-element chip signatures confirm physical product matches on-chain record during verification.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-history text-green-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-history text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Immutable Provenance</h3>
-                    <p class="text-slate-400">Every verification and transfer is permanently recorded, creating transparent ownership history.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Immutable Provenance</h3>
+                    <p class="text-gray-300">Every verification and transfer permanently recorded, creating transparent, trusted history for each item.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-coins text-purple-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Automatic Fee Routing</h3>
-                    <p class="text-slate-400">Smart contracts distribute fees, royalties, and taxes instantly upon transaction approval.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Cross-Border Portability</h3>
+                    <p class="text-gray-300">Universal ownership records enable seamless asset transfers across jurisdictions and marketplaces.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-globe text-yellow-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-coins text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Cross-Border Compatibility</h3>
-                    <p class="text-slate-400">Unified system works across jurisdictions, enabling global asset portability.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Automated Royalties</h3>
+                    <p class="text-gray-300">Smart contracts ensure brands receive royalties on secondary sales and governments collect taxes automatically.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-red-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-ban text-red-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Theft & Dispute Resolution</h3>
-                    <p class="text-slate-400">Lost or stolen assets can be frozen on-chain with built-in dispute resolution mechanisms.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Dispute Resolution</h3>
+                    <p class="text-gray-300">Built-in freeze mechanisms and governance for handling lost, stolen, or disputed asset ownership claims.</p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl card-hover border border-slate-700">
-                    <div class="w-16 h-16 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-eye-slash text-indigo-400 text-2xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Privacy-Preserving KYC</h3>
-                    <p class="text-slate-400">Soulbound tokens enable compliance while protecting sensitive personal information.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Market Analytics</h3>
+                    <p class="text-gray-300">Comprehensive dashboards for brands, authenticators, and governments to track verification trends and revenue.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Technology Section -->
-    <section id="technology" class="py-20 bg-slate-900">
-        <div class="container mx-auto px-6">
+    <section id="technology" class="section py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">Why Somnia Blockchain?</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Built on cutting-edge technology that enables real-time, high-volume ownership transfers
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Why <span class="text-accent">Somnia</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Built on Somnia's high-performance, EVM-compatible blockchain for real-time ownership transfers
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-blue-900/20 to-blue-800/20 p-8 rounded-xl border border-blue-700/30 card-hover">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-bolt text-blue-400 text-3xl"></i>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-tachometer-alt text-accent"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">1M+ TPS Throughput</h3>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Sub-Second Finality</h3>
-                        <p class="text-slate-400 leading-relaxed">
-                            Lightning-fast transaction confirmation enables real-time ownership transfers at luxury boutiques or government offices.
-                        </p>
+                        <p class="text-gray-300">Handle high-volume ownership transfers whether at luxury boutique counters or government registry offices.</p>
+                    </div>
+
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-clock text-accent"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Sub-Second Finality</h3>
+                        </div>
+                        <p class="text-gray-300">Real-time ownership verification and transfer completion for immediate business processes.</p>
+                    </div>
+
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-accent"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Ultra-Low Fees</h3>
+                        </div>
+                        <p class="text-gray-300">Micro-commissions and frequent verification checks remain economical, enabling scale and adoption.</p>
+                    </div>
+
+                    <div class="card p-6 rounded-xl">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                <i class="fab fa-ethereum text-accent"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">EVM Compatible</h3>
+                        </div>
+                        <p class="text-gray-300">Solidity smart contracts with existing wallet compatibility and established development tools.</p>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-green-900/20 to-green-800/20 p-8 rounded-xl border border-green-700/30 card-hover">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-chart-line text-green-400 text-3xl"></i>
+
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-white">Technology Stack</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-white">Blockchain Layer</span>
+                                <span class="text-accent">Somnia EVM</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full w-full"></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">1M+ TPS Throughput</h3>
-                        <p class="text-slate-400 leading-relaxed">
-                            Massive scale supports global adoption across luxury markets and government registries simultaneously.
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-br from-purple-900/20 to-purple-800/20 p-8 rounded-xl border border-purple-700/30 card-hover">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-dollar-sign text-purple-400 text-3xl"></i>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-white">Smart Contracts</span>
+                                <span class="text-accent">Solidity</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full w-full"></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Ultra-Low Fees</h3>
-                        <p class="text-slate-400 leading-relaxed">
-                            Micro-transactions and frequent verifications remain economical, enabling new business models and wider adoption.
-                        </p>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-white">Hardware Integration</span>
+                                <span class="text-accent">NFC/Secure Element</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full w-90"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-white">Identity Layer</span>
+                                <span class="text-accent">Soulbound Tokens</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full w-85"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold text-white">Storage</span>
+                                <span class="text-accent">IPFS</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full w-80"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-16 text-center">
-                <div class="inline-flex items-center space-x-4 bg-slate-800 px-8 py-4 rounded-xl border border-slate-700">
-                    <i class="fas fa-code text-blue-400 text-2xl"></i>
-                    <span class="text-lg font-semibold">EVM-Compatible Smart Contracts</span>
-                    <span class="text-slate-400">|</span>
-                    <i class="fas fa-wallet text-green-400 text-2xl"></i>
-                    <span class="text-lg font-semibold">Universal Wallet Support</span>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="section py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Use <span class="text-accent">Cases</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    From luxury goods to government registries, VALiChain transforms ownership verification
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-gem text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Luxury Goods</h3>
+                    <p class="text-gray-300 mb-4">Watches, handbags, jewelry, and collectibles with instant authentication and resale verification.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Brand-certified authenticity</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Instant transfers at point of sale</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Automated royalty distribution</li>
+                    </ul>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-car text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Vehicle Titles</h3>
+                    <p class="text-gray-300 mb-4">Digital car titles with DMV integration, reducing transfer time from weeks to minutes.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Government-verified ownership</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Automatic tax collection</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Lien and insurance integration</li>
+                    </ul>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-home text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Real Estate</h3>
+                    <p class="text-gray-300 mb-4">Property deeds and titles with automated recording and dispute resolution mechanisms.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Immutable property records</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Simplified transfer process</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Multi-jurisdiction compatibility</li>
+                    </ul>
+                </div>
+
+                <div class="card p-8 rounded-2xl">
+                    <div class="icon-container w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-certificate text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Government Assets</h3>
+                    <p class="text-gray-300 mb-4">Licenses, permits, and registered assets with automated compliance and renewal systems.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Automated renewals</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Cross-agency verification</li>
+                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Fraud prevention</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Business Model Section -->
-    <section class="py-20 bg-slate-800">
-        <div class="container mx-auto px-6">
+    <section class="section py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">Business Model</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Aligned incentives create sustainable revenue while benefiting all stakeholders
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Business <span class="text-accent">Model</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Aligned incentives creating value for all stakeholders in the ownership ecosystem
                 </p>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div class="space-y-8">
-                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-700">
-                        <h3 class="text-xl font-bold mb-4 flex items-center">
-                            <i class="fas fa-percentage text-yellow-400 mr-3"></i>
+                    <div class="card p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4 text-white flex items-center">
+                            <i class="fas fa-dollar-sign text-accent mr-3"></i>
                             Revenue Streams
                         </h3>
-                        <ul class="space-y-3 text-slate-400">
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Verification fees from authenticator commissions</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Transaction fees per ownership transfer</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Brand SaaS (whitelabel dashboards, analytics)</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Government compliance routing fees</li>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><span class="text-accent mr-2">•</span>Verification fees from authentication marketplace</li>
+                            <li class="flex items-start"><span class="text-accent mr-2">•</span>Transaction fees on ownership transfers</li>
+                            <li class="flex items-start"><span class="text-accent mr-2">•</span>Brand SaaS subscriptions for analytics dashboards</li>
+                            <li class="flex items-start"><span class="text-accent mr-2">•</span>Government compliance routing fees</li>
                         </ul>
                     </div>
-                    <div class="bg-slate-900 p-6 rounded-xl border border-slate-700">
-                        <h3 class="text-xl font-bold mb-4 flex items-center">
-                            <i class="fas fa-users text-blue-400 mr-3"></i>
-                            Stakeholder Benefits
+
+                    <div class="card p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4 text-white flex items-center">
+                            <i class="fas fa-chart-pie text-accent mr-3"></i>
+                            Market Opportunity
                         </h3>
-                        <ul class="space-y-3 text-slate-400">
-                            <li class="flex items-center"><i class="fas fa-arrow-right text-slate-500 mr-2"></i> <strong>Brands:</strong> Royalties on resales, anti-counterfeiting</li>
-                            <li class="flex items-center"><i class="fas fa-arrow-right text-slate-500 mr-2"></i> <strong>Authenticators:</strong> Automated payments, expanded reach</li>
-                            <li class="flex items-center"><i class="fas fa-arrow-right text-slate-500 mr-2"></i> <strong>Governments:</strong> Real-time tax collection, reduced fraud</li>
-                            <li class="flex items-center"><i class="fas fa-arrow-right text-slate-500 mr-2"></i> <strong>Consumers:</strong> Verified authenticity, instant transfers</li>
-                        </ul>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Luxury Goods Market</span>
+                                    <span class="text-accent">$350B</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full w-80"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Used Car Market</span>
+                                    <span class="text-accent">$1.2T</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full w-full"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-gray-300">Real Estate</span>
+                                    <span class="text-accent">$280T</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full w-90"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-xl border border-slate-700">
-                    <h3 class="text-2xl font-bold mb-8 text-center">Market Opportunity</h3>
+
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-white">Stakeholder Benefits</h3>
                     <div class="space-y-6">
-                        <div class="flex justify-between items-center p-4 bg-slate-800 rounded-lg">
-                            <span class="font-semibold">Global Luxury Market</span>
-                            <span class="text-yellow-400 font-bold">$380B</span>
+                        <div>
+                            <h4 class="font-semibold text-accent mb-2">For Brands</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• Reduce counterfeiting losses</li>
+                                <li>• Earn royalties on secondary sales</li>
+                                <li>• Build customer loyalty through verified authenticity</li>
+                            </ul>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-slate-800 rounded-lg">
-                            <span class="font-semibold">Counterfeit Losses</span>
-                            <span class="text-red-400 font-bold">$30B+</span>
+                        <div>
+                            <h4 class="font-semibold text-accent mb-2">For Consumers</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• Instant ownership verification</li>
+                                <li>• Fraud protection and dispute resolution</li>
+                                <li>• Increased resale value through verified provenance</li>
+                            </ul>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-slate-800 rounded-lg">
-                            <span class="font-semibold">Vehicle Registration Market</span>
-                            <span class="text-blue-400 font-bold">$50B</span>
+                        <div>
+                            <h4 class="font-semibold text-accent mb-2">For Governments</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• Automated tax collection</li>
+                                <li>• Reduced administrative overhead</li>
+                                <li>• Enhanced compliance and fraud prevention</li>
+                            </ul>
                         </div>
-                        <div class="border-t border-slate-700 pt-4">
-                            <div class="flex justify-between items-center p-4 bg-yellow-500/10 rounded-lg">
-                                <span class="font-bold text-lg">Total Addressable Market</span>
-                                <span class="text-yellow-400 font-bold text-xl">$460B+</span>
-                            </div>
+                        <div>
+                            <h4 class="font-semibold text-accent mb-2">For Authenticators</h4>
+                            <ul class="text-sm text-gray-300 space-y-1">
+                                <li>• New revenue stream through verification services</li>
+                                <li>• Automated payment systems</li>
+                                <li>• Reputation building through staking mechanisms</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -395,39 +725,51 @@
     </section>
 
     <!-- Team Section -->
-    <section class="py-20 bg-slate-900">
-        <div class="container mx-auto px-6">
+    <section class="section py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">Meet the Founder</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Led by a multi-disciplinary expert with deep expertise in AI, blockchain, and software development
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Meet the <span class="text-accent">Founder</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Multidisciplinary expertise combining healthcare, technology, and blockchain innovation
                 </p>
             </div>
+
             <div class="max-w-4xl mx-auto">
-                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 text-center">
-                    <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-user-md text-slate-900 text-3xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold playfair mb-2">Dr. Debanjan Barman (MBBS)</h3>
-                    <p class="text-yellow-400 font-semibold mb-6">Founder & Lead Developer</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-xl font-bold mb-4 text-left">Technical Expertise</h4>
-                            <ul class="text-left space-y-2 text-slate-400">
-                                <li class="flex items-center"><i class="fas fa-brain text-purple-400 mr-3"></i> AI/ML Engineer & NLP Specialist</li>
-                                <li class="flex items-center"><i class="fas fa-code text-blue-400 mr-3"></i> Full-stack Web Developer</li>
-                                <li class="flex items-center"><i class="fas fa-mobile-alt text-green-400 mr-3"></i> Flutter Cross-platform Developer</li>
-                                <li class="flex items-center"><i class="fas fa-cube text-yellow-400 mr-3"></i> Blockchain & Smart Contract Developer</li>
-                            </ul>
+                <div class="card p-8 md:p-12 rounded-2xl">
+                    <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                        <div class="flex-shrink-0">
+                            <div class="w-32 h-32 rounded-2xl glass-effect flex items-center justify-center">
+                                <i class="fas fa-user-md text-6xl text-accent"></i>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="text-xl font-bold mb-4 text-left">Background</h4>
-                            <ul class="text-left space-y-2 text-slate-400">
-                                <li class="flex items-center"><i class="fas fa-graduation-cap text-blue-400 mr-3"></i> Medical Degree (MBBS)</li>
-                                <li class="flex items-center"><i class="fas fa-map-marker-alt text-red-400 mr-3"></i> Based in India, Remote-ready</li>
-                                <li class="flex items-center"><i class="fas fa-rocket text-purple-400 mr-3"></i> Serial Entrepreneur</li>
-                                <li class="flex items-center"><i class="fas fa-shield-alt text-green-400 mr-3"></i> Security & Compliance Focused</li>
-                            </ul>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="text-3xl font-bold mb-2 text-white">Dr. Debanjan Barman</h3>
+                            <p class="text-accent text-lg mb-4">MBBS, Founder & CEO</p>
+                            <p class="text-gray-300 mb-6">
+                                Unique combination of medical background with deep technical expertise in AI/ML, blockchain development, and full-stack engineering. 
+                                Brings both analytical rigor and practical development skills to solve complex ownership verification challenges.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-white mb-3">Technical Expertise</h4>
+                                    <ul class="space-y-2 text-gray-300">
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>AI/ML Engineering & NLP</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Full-stack Web Development</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Flutter Cross-platform Apps</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Blockchain & Smart Contracts</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-3">Background</h4>
+                                    <ul class="space-y-2 text-gray-300">
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Medical Doctor (MBBS)</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Data Science Specialist</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>Security-focused Development</li>
+                                        <li class="flex items-center"><i class="fas fa-check text-accent mr-2"></i>India-based, Remote-ready</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -436,117 +778,136 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-slate-800">
-        <div class="container mx-auto px-6">
+    <section id="contact" class="section py-20 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold playfair mb-6">Get in Touch</h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
-                    Ready to revolutionize asset ownership verification? Let's discuss partnerships and pilot opportunities.
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">Get <span class="text-accent">Started</span></h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Ready to transform ownership verification? Let's discuss pilot partnerships and implementation.
                 </p>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div class="space-y-8">
-                    <div class="bg-slate-900 p-8 rounded-xl border border-slate-700">
-                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <div class="card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Contact Information</h3>
                         <div class="space-y-4">
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-envelope text-blue-400"></i>
+                                <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-accent"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold">Email</p>
-                                    <p class="text-slate-400">contact@valichain.com</p>
+                                    <div class="font-semibold text-white">Email</div>
+                                    <div class="text-gray-300">you@example.com</div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-phone text-green-400"></i>
+                                <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-phone text-accent"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold">Phone</p>
-                                    <p class="text-slate-400">+91-00000-00000</p>
+                                    <div class="font-semibold text-white">Phone</div>
+                                    <div class="text-gray-300">+91-00000-00000</div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                                    <i class="fab fa-github text-purple-400"></i>
+                                <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-github text-accent"></i>
                                 </div>
                                 <div>
-                                    <p class="font-semibold">GitHub</p>
-                                    <p class="text-slate-400">github.com/valichain</p>
+                                    <div class="font-semibold text-white">GitHub</div>
+                                    <div class="text-gray-300">github.com/yourhandle</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="icon-container w-12 h-12 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-accent"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-white">Location</div>
+                                    <div class="text-gray-300">India • Remote Available</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-8 rounded-xl border border-slate-700">
-                        <h3 class="text-xl font-bold mb-4">Looking For</h3>
-                        <ul class="space-y-3 text-slate-400">
-                            <li class="flex items-center"><i class="fas fa-handshake text-yellow-400 mr-3"></i> Pilot brand partners (luxury goods)</li>
-                            <li class="flex items-center"><i class="fas fa-certificate text-blue-400 mr-3"></i> Certified authenticator agencies</li>
-                            <li class="flex items-center"><i class="fas fa-coins text-green-400 mr-3"></i> Seed funding and grants</li>
-                            <li class="flex items-center"><i class="fas fa-building text-purple-400 mr-3"></i> Government innovation partnerships</li>
+
+                    <div class="card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Looking For</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center"><i class="fas fa-handshake text-accent mr-3"></i>Pilot brand partners (luxury goods)</li>
+                            <li class="flex items-center"><i class="fas fa-certificate text-accent mr-3"></i>Certified authenticator agencies</li>
+                            <li class="flex items-center"><i class="fas fa-university text-accent mr-3"></i>Government innovation sandboxes</li>
+                            <li class="flex items-center"><i class="fas fa-seedling text-accent mr-3"></i>Grants and seed funding</li>
+                            <li class="flex items-center"><i class="fas fa-users text-accent mr-3"></i>Technical advisors and mentors</li>
                         </ul>
                     </div>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-xl border border-slate-700">
-                    <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+
+                <div class="card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-white">Send a Message</h3>
                     <form class="space-y-6">
                         <div>
-                            <label class="block text-sm font-semibold mb-2">Name</label>
-                            <input type="text" class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:border-yellow-400 focus:outline-none" placeholder="Your name">
+                            <label class="block text-sm font-semibold text-white mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:border-accent focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:border-yellow-400 focus:outline-none" placeholder="your@email.com">
+                            <label class="block text-sm font-semibold text-white mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:border-accent focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-2">Interest</label>
-                            <select class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:border-yellow-400 focus:outline-none">
-                                <option>Brand Partnership</option>
-                                <option>Authenticator Agency</option>
-                                <option>Investment/Funding</option>
-                                <option>Government Partnership</option>
+                            <label class="block text-sm font-semibold text-white mb-2">Organization</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:border-accent focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-white mb-2">Interest Area</label>
+                            <select class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:border-accent focus:outline-none">
+                                <option>Partnership Opportunity</option>
+                                <option>Investment Discussion</option>
+                                <option>Technical Collaboration</option>
+                                <option>Government Pilot</option>
                                 <option>General Inquiry</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-2">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:border-yellow-400 focus:outline-none" placeholder="Tell us about your interest in VALiChain..."></textarea>
+                            <label class="block text-sm font-semibold text-white mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:border-accent focus:outline-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full px-6 py-4 gold-gradient text-slate-900 font-bold rounded-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-paper-plane mr-2"></i>
+                        <button type="submit" class="w-full btn-accent px-8 py-4 rounded-full text-lg font-semibold">
                             Send Message
                         </button>
                     </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <div class="inline-flex items-center space-x-6">
+                    <button class="btn-accent px-8 py-4 rounded-full text-lg font-semibold">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Pitch Deck
+                    </button>
+                    <button class="glass-effect px-8 py-4 rounded-full text-lg font-semibold text-white hover:bg-white hover:bg-opacity-10 transition-all">
+                        <i class="fas fa-file-alt mr-2"></i>
+                        View Whitepaper
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-slate-900 border-t border-slate-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between">
+    <footer class="bg-primary border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-3 mb-4 md:mb-0">
-                    <div class="w-10 h-10 rounded-lg gold-gradient flex items-center justify-center">
-                        <i class="fas fa-check text-slate-900 text-lg font-bold"></i>
+                    <div class="w-10 h-10 rounded-lg icon-container flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-accent"></i>
                     </div>
-                    <span class="text-2xl font-bold playfair">VALiChain</span>
+                    <span class="text-2xl font-bold gradient-accent">VALiChain</span>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-slate-400 hover:text-yellow-400 transition">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-slate-400 hover:text-yellow-400 transition">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" class="text-slate-400 hover:text-yellow-400 transition">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
+                <div class="text-gray-400 text-center md:text-right">
+                    <p>&copy; 2024 VALiChain. Built on Somnia Blockchain.</p>
+                    <p class="text-sm mt-1">Verified Ownership • Trusted Transfers • Automated Authentication</p>
                 </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-slate-400">
-                <p>&copy; 2024 VALiChain. Built on Somnia Blockchain. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -566,30 +927,44 @@
             });
         });
 
-        // Add scroll animation for fade-in elements
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('backdrop-blur-xl');
+            } else {
+                nav.classList.remove('backdrop-blur-xl');
+            }
+        });
+
+        // Animate cards on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe all cards and sections
-        document.querySelectorAll('.card-hover, section > div').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
 
         // Mobile menu toggle (if needed)
-        const mobileMenuBtn = document.querySelector('[data-mobile-menu]');
-        if (mobileMenuBtn) {
+        const mobileMenuBtn = document.querySelector('#mobile-menu-btn');
+        const mobileMenu = document.querySelector('#mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', function() {
-                const mobileMenu = document.querySelector('[data-mobile-menu-items]');
                 mobileMenu.classList.toggle('hidden');
             });
         }
